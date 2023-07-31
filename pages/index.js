@@ -6,13 +6,13 @@ import web1 from "../public/web1.png"
 import web2 from "../public/web2.png"
 import { useState } from 'react';
 
-
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   return (
     <div className={darkMode ? 'dark' : ""}>
       <Head>
         <title>Nifise</title>
+        <link rel="icon" href="/avatar.png"></link>
       </Head>
       
       <main className="bg-white px-10 md:px-20 lg:px-40 dark:bg-gray-900">
