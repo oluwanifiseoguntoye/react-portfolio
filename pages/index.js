@@ -64,11 +64,15 @@ export default function Home() {
           <div className='flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap'>
 
             <div className='basis-1/3 flex-1'>
-              <Image src={web1} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+              <a target="_blank" href="https://github.com/oluwanifiseoguntoye/platinum">
+                <Image src={web1} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+              </a>
             </div>
 
             <div className='basis-1/3 flex-1'>
-              <Image src={web2} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+              <a target="_blank" href="https://github.com/oluwanifiseoguntoye/MyFridge-backendAPI">
+                <Image src={web2} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+              </a>
             </div>
 
           </div>
