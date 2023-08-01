@@ -5,8 +5,11 @@ import {BsFillMoonStarsFill} from 'react-icons/bs'
 import Link from 'next/link';
 import {AiFillGithub} from 'react-icons/ai'
 import Image from 'next/image';
-import web1 from "../public/web1.png"
-import web2 from "../public/web2.png"
+import web3 from "../public/web3.png"
+import web4 from "../public/web4.png"
+import web5 from "../public/web5.png"
+import web6 from "../public/web6.png"
+import web7 from "../public/web7.png"
 
 function project() {
   const [darkMode, setDarkMode] = useState(false);
@@ -47,7 +50,7 @@ function project() {
               </p>
             </div>
             <div className="text-5xl flex justify-center gap-16 py-3 text-black dark:text-white">
-              <a target="_blank" href="https://github.com/oluwanifiseoguntoye"><AiFillGithub /></a>
+              <a target="_blank" href="https://github.com/oluwanifiseoguntoye/platinum"><AiFillGithub /></a>
             </div>
         </section>
 
@@ -58,18 +61,34 @@ function project() {
           <div className='flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap'>
 
             <div className='basis-1/3 flex-1'>
-              <Link href={'/platinum'}>
-                <Image src={web1} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </Link>
+                <Image src={web4} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
             </div>
 
             <div className='basis-1/3 flex-1'>
-              <a target="_blank" href="https://github.com/oluwanifiseoguntoye/MyFridge-backendAPI">
-                <Image src={web2} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </a>
+                <Image src={web5} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+            </div>
+
+            <div className='basis-1/3 flex-1'>
+                <Image src={web3} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+            </div>
+
+            <div className='basis-1/3 flex-1'>
+                <Image src={web7} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+            </div>
+
+            <div className='basis-1/3 flex-1'>
+                <Image src={web6} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
             </div>
 
           </div>
+        </section>
+
+        <section>
+          <footer className='mt-20 text-center'>
+              <h3 className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>
+                  2023 Oluwanifise Oguntoye
+              </h3>
+          </footer>
         </section>
 
       </main>
