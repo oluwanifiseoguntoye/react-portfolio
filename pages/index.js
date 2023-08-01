@@ -5,6 +5,7 @@ import Image from "next/image";
 import web1 from "../public/web1.png"
 import web2 from "../public/web2.png"
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -64,9 +65,9 @@ export default function Home() {
           <div className='flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap'>
 
             <div className='basis-1/3 flex-1'>
-              <a target="_blank" href="https://github.com/oluwanifiseoguntoye/platinum">
+              <Link href={'/platinum'}>
                 <Image src={web1} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </a>
+              </Link>
             </div>
 
             <div className='basis-1/3 flex-1'>
