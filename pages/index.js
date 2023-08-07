@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import {BsFillMoonStarsFill} from 'react-icons/bs'
-import {AiFillLinkedin, AiFillGithub} from 'react-icons/ai'
+import {AiFillLinkedin, AiFillGithub, } from 'react-icons/ai'
 import Image from "next/image";
 import web1 from "../public/web1.png"
 import web2 from "../public/web2.png"
 import { useState } from 'react';
 import Link from 'next/link';
+import web11 from "../public/web11.png"
+import web12 from "../public/web12.png"
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -73,6 +75,18 @@ export default function Home() {
             <div className='basis-1/3 flex-1'>
               <Link href={'/platinum'}>
                 <Image src={web1} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+              </Link>
+            </div>
+
+            <div className='basis-1/3 flex-1'>
+              <Link href={'/drowsedetect'}>
+                <Image src={web11} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
+              </Link>
+            </div>
+
+            <div className='basis-1/3 flex-1'>
+              <Link href={'/ytstreamlit'}>
+                <Image src={web12} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
               </Link>
             </div>
 
