@@ -1,121 +1,219 @@
-import Head from 'next/head'
-import {BsFillMoonStarsFill} from 'react-icons/bs'
-import {AiFillLinkedin, AiFillGithub, } from 'react-icons/ai'
-import Image from "next/image";
-import web1 from "../public/web1.png"
-import web2 from "../public/web2.png"
-import { useState } from 'react';
-import Link from 'next/link';
-import web11 from "../public/web11.png"
-import web12 from "../public/web12.png"
+import React, { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { 
+  AlertCircle, 
+  Target, 
+  Users, 
+  TrendingUp, 
+  Map, 
+  CheckSquare, 
+  BarChart2 
+} from 'lucide-react';
 
-export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
+const ProductWorkbench = () => {
+  const [activeSections, setActiveSections] = useState({
+    vision: '',
+    customer: '',
+    market: '',
+    roadmap: '',
+    metrics: ''
+  });
+
+  // Framework templates and guidance
+  const frameworks = {
+    vision: {
+      title: 'Product Vision & Strategy',
+      sections: [
+        {
+          name: 'Vision Statement',
+          placeholder: 'In 5 years, our product will...',
+          helper: 'Define your ambitious yet achievable long-term vision'
+        },
+        {
+          name: 'Strategic Pillars',
+          placeholder: 'Key strategic areas of focus...',
+          helper: 'Identify 3-5 core pillars that support your vision'
+        },
+        {
+          name: 'Value Proposition',
+          placeholder: 'Our unique value proposition is...',
+          helper: 'Clearly articulate your products unique value'
+        }
+      ]
+    },
+    customer: {
+      title: 'Customer & Market Analysis',
+      sections: [
+        {
+          name: 'User Personas',
+          placeholder: 'Describe your key user personas...',
+          helper: 'Define detailed profiles of your target users'
+        },
+        {
+          name: 'Pain Points',
+          placeholder: 'List key customer pain points...',
+          helper: 'Identify problems your product solves'
+        },
+        {
+          name: 'Jobs to be Done',
+          placeholder: 'What jobs do users hire your product for?',
+          helper: 'Define core user needs and jobs'
+        }
+      ]
+    },
+    market: {
+      title: 'Market Analysis',
+      sections: [
+        {
+          name: 'Market Size',
+          placeholder: 'TAM, SAM, SOM analysis...',
+          helper: 'Define your target market size and segments'
+        },
+        {
+          name: 'Competitive Analysis',
+          placeholder: 'Key competitors and differentiation...',
+          helper: 'Analyze competition and positioning'
+        },
+        {
+          name: 'Market Trends',
+          placeholder: 'Key market trends affecting product...',
+          helper: 'Identify important market dynamics'
+        }
+      ]
+    },
+    roadmap: {
+      title: 'Product Roadmap',
+      sections: [
+        {
+          name: 'Strategic Themes',
+          placeholder: 'Key themes for next 12 months...',
+          helper: 'Define major strategic focus areas'
+        },
+        {
+          name: 'Key Initiatives',
+          placeholder: 'Major projects and initiatives...',
+          helper: 'List key projects that support themes'
+        },
+        {
+          name: 'Timeline & Milestones',
+          placeholder: 'Key dates and deliverables...',
+          helper: 'Define timeline and success metrics'
+        }
+      ]
+    },
+    metrics: {
+      title: 'Success Metrics',
+      sections: [
+        {
+          name: 'North Star Metric',
+          placeholder: 'Your primary success metric...',
+          helper: 'Define your most important metric'
+        },
+        {
+          name: 'Key Performance Indicators',
+          placeholder: 'Supporting metrics and KPIs...',
+          helper: 'List metrics that track success'
+        },
+        {
+          name: 'Health Metrics',
+          placeholder: 'Product health indicators...',
+          helper: 'Define metrics that show product health'
+        }
+      ]
+    }
+  };
+
+  const handleInputChange = (section, field, value) => {
+    setActiveSections(prev => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: value
+      }
+    }));
+  };
+
+  const renderFrameworkSection = (framework, sectionKey) => {
+    return (
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="text-xl font-semibold">{framework.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {framework.sections.map((section, index) => (
+            <div key={index} className="mb-4">
+              <label className="block text-sm font-medium mb-2">
+                {section.name}
+                <span className="text-gray-500 text-xs ml-2">
+                  <AlertCircle className="inline w-4 h-4 mr-1" />
+                  {section.helper}
+                </span>
+              </label>
+              <textarea
+                className="w-full p-2 border rounded-md min-h-24"
+                placeholder={section.placeholder}
+                value={activeSections[sectionKey]?.[section.name] || ''}
+                onChange={(e) => handleInputChange(sectionKey, section.name, e.target.value)}
+              />
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
-    <div className={darkMode ? 'dark' : ""}>
-      <Head>
-        <title>Nifise</title>
-        <link rel="icon" href="/avatar.png"></link>
-      </Head>
-      
-      <main className="bg-white px-10 md:px-20 lg:px-40 dark:bg-gray-900">
-        <section className= "min-h-screen">
-            <nav className="py-10 mb-12 flex justify-between">
-              <h1 className='text-xl font-burtons text-black dark:text-white'>Nifise</h1>
-              <ul className='flex items-center'>
-                <li>
-                  <BsFillMoonStarsFill onClick={() => setDarkMode(!darkMode)} className='curser-pointer text-black dark:text-white text-2xl'/>
-                </li>
-                <li>
-                  <a className=" bg-gradient-to-r from-pink-600 to-pink-400 text-white px-4 py-2 rounded-md ml-8" target="_blank" href="https://docs.google.com/document/d/1MYLfyYoiamJ6VPnXs4gcAZR4qSsMW6q-L-Zqc315vU8/edit?usp=sharing">Resume</a>
-                </li>
-              </ul>
-            </nav>
-            <div className='text-center p-10'>
-              <h2 className='text-5xl py-2 text-pink-600 font-medium dark:text-pink-400 md:text-6xl'>Oluwanifise Oguntoye</h2>
-              <h3 className='text-2xl py-2 text-black dark:text-white md:text-3xl'>University of Toronto Student</h3>
-              <p className='text-md py-5 leading-8 text-gray-800 dark:text-gray-200 md:text-xl max-w-xl mx-auto'>
-                  I'm a Mathematics and Statistics Double Major. I have experience with Software Development 
-                  and I aspire to get my Masters in Data Science.
-              </p>
-            </div>
-            <div className="text-5xl flex justify-center gap-16 py-3 text-black dark:text-white">
-              <a target="_blank" href="https://github.com/oluwanifiseoguntoye"><AiFillGithub /></a>
-              <a target="_blank" href="https://linkedin.com/in/oluwanifise/"><AiFillLinkedin /></a>
-            </div>
-        </section>
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Product Workbench</h1>
+        <p className="text-gray-600">
+          A comprehensive toolkit for product strategy and planning
+        </p>
+      </div>
 
-        <section>
-          <div className='mb-90'>
-             <h3 className="text-3xl py-1 text-black dark:text-white">About Me</h3>
-             <p className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>
-              I started my undergraduate degree as an Accounting major but realized it wasn't 
-              the right fit for me so while finding a new career path, I decided to learn python.
-              Although I started exploring software development relatively late, 
-              I have already built a number of applications and websites that I'm really proud of.
-              I'm now a Statistics and Math double major because I would love to work with 
-              <span className='text-pink-500'> Machine Learning</span> and 
-              <span className='text-pink-500'> Artifical Intelligence</span> in the future.   
-             </p>
-          </div>
-        </section>
+      <Tabs defaultValue="vision" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-5">
+          <TabsTrigger value="vision" className="flex items-center">
+            <Target className="w-4 h-4 mr-2" />
+            Vision
+          </TabsTrigger>
+          <TabsTrigger value="customer" className="flex items-center">
+            <Users className="w-4 h-4 mr-2" />
+            Customer
+          </TabsTrigger>
+          <TabsTrigger value="market" className="flex items-center">
+            <TrendingUp className="w-4 h-4 mr-2" />
+            Market
+          </TabsTrigger>
+          <TabsTrigger value="roadmap" className="flex items-center">
+            <Map className="w-4 h-4 mr-2" />
+            Roadmap
+          </TabsTrigger>
+          <TabsTrigger value="metrics" className="flex items-center">
+            <BarChart2 className="w-4 h-4 mr-2" />
+            Metrics
+          </TabsTrigger>
+        </TabsList>
 
-        <section>
-          <div>
-            <h3 className='text-3xl py-1 text-black dark:text-white mt-20'>Portfolio</h3>
-          </div> 
-          <div className='flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap'>
-
-          <div className='basis-1/3 flex-1'>
-              <Link href={'/myfridge'}>
-                <Image src={web2} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </Link>
-            </div>
-
-            <div className='basis-1/3 flex-1'>
-              <Link href={'/platinum'}>
-                <Image src={web1} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </Link>
-            </div>
-
-            <div className='basis-1/3 flex-1'>
-              <Link href={'/drowsedetect'}>
-                <Image src={web11} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </Link>
-            </div>
-
-            <div className='basis-1/3 flex-1'>
-              <Link href={'/ytstreamlit'}>
-                <Image src={web12} className="rounded-lg object-cover" width={'100%'} height={'100%'} layout="reposnsive"/>
-              </Link>
-            </div>
-
-          </div>
-        </section>
-
-        <section>
-          <div className='mt-10'>
-            <h3 className="text-3xl py-1 text-black dark:text-white">Get in Touch</h3>
-            <p className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>
-              Feel free to reach out to me below with any
-              <span className='text-pink-500'> work opportunities</span> and 
-              <span className='text-pink-500'> project inquries</span> and I will
-              get back to you as soon as possible.
-             </p>
-          </div>
-        </section>
-
-        <section>
-          <footer className='mt-20 text-center'>
-              <h3 className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>
-                  2023 Oluwanifise Oguntoye
-              </h3>
-          </footer>
-        </section>
-
-      </main>
-    
+        <TabsContent value="vision">
+          {renderFrameworkSection(frameworks.vision, 'vision')}
+        </TabsContent>
+        <TabsContent value="customer">
+          {renderFrameworkSection(frameworks.customer, 'customer')}
+        </TabsContent>
+        <TabsContent value="market">
+          {renderFrameworkSection(frameworks.market, 'market')}
+        </TabsContent>
+        <TabsContent value="roadmap">
+          {renderFrameworkSection(frameworks.roadmap, 'roadmap')}
+        </TabsContent>
+        <TabsContent value="metrics">
+          {renderFrameworkSection(frameworks.metrics, 'metrics')}
+        </TabsContent>
+      </Tabs>
     </div>
-    
-  )
-}
+  );
+};
+
+export default ProductWorkbench;
